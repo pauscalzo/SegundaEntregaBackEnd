@@ -1,111 +1,49 @@
-mmmm
-# Ecommerce Back End
+# Desafío 5 Back End
 
 Voy a ir punto por punto mostrando lo solicitado:
 
-### 1) Recibir por query params un limit (opcional), si no recibe el límite será 10.
+### 1) Vistas y rutas para procesar registro y login.
 
 
 
 
 #### Capturas desde el Navegador
 
-a - si hay límite:
-![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-02-28%20123814.png)
+a - SignUp para registrarse. Si va a Login y el mail no se encuentra en la base de datos se redirige a esta vista que es SignUp para registrarse:
+![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-03-01%20232616.png)
 
-b - si no hay límite, se muestran 10:
+b - Login. Si la contraseña no es válida da aviso. Si ya está logueado el usuario lo redirige directamente a /productos:
 
-![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-02-28%20125511.png)
+![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-03-01%20232515.png)
 
 
-### 2) Recibir por query params una page (opcional), si no recibe el límite será la 1.
+### 2) Una vez realizado el login redirigirse a productos + mensaje de bienvenida.
 
-a - page # 1:
-![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-02-28%20130054.png)
+a - En la vista de productos:
 
-b - page # 2:
+![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-03-01%20232717.png)
 
-![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-02-28%20125940.png)
+b - En la base de datos puede verse que hay una sesión activa:
 
-c - sin especificar page:
+![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-03-01%20232738.png)
 
-![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-02-28%20125511.png)
+### 3) Asignar roles de administrador o usuarios.
 
-### 3) Recibir por query params un sort (opcional), que ordene de manera ascendente y descendente por precio.
+a - en la consola puede verse que si es Admin hay un campo que dice Admin: true, el resto dice Admin: false:
 
-a - ascendente:
-![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-02-28%20130508.png)
+![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-03-01%20232820.png)
 
-b - descendente:
+### 4) Boton de Logout para finalizar sesión.
 
-![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-02-28%20130753.png)
+a - al apretar el botón logout ya visto en la vista de /productos, la sesión finaliza y ya no la vemos en la base de datos en la colección sessions:
 
-### 4) Recibir por query params un query (opcional), por categoría y por disponibilidad.
+![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-03-01%20232852.png)
 
-a - por categoría:
-![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-02-28%20133041.png)
+b - Sin embargo el usuario queda guardado en la colección users:
 
-![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-02-28%20133158.png)
+![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-03-01%20232802.png)
 
-![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-02-28%20133314.png)
 
-![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-02-28%20133419.png)
-
-b - por disponibilidad:
-
-![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-02-28%20133533.png)
-
-![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-02-28%20133628.png)
-
-### 5) Tambien sumar orden por precio a lo anterior.
-
-a - categoría playmobil precio ascendente:
-![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-02-28%20133921.png)
-
-b - status disponible precio descendente:
-
-![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-02-28%20134037.png)
-
-### 6) Modificar el código para incorporar Populate en el método de agregar al carrito.
-
-a - En postman muestro respuesta trás aplicar el método POST en la ruta /carts/cid/pid:
-![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-02-28%20134801.png)
-
-b - En la base de datos corroboro que el producto ha sido agregado al carrito con éxito:
-![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-02-28%20135142.png)
-
-### 7) Vista de Carrito con los productos del carrito a través de la ruta api/carts/:cid.
-
-a - En el navegador:
-![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-02-28%20135439.png)
-
-### 8) Actualizar la cantidad de un producto en el carrito por req.body a través de la ruta /carts/:cid/products/:pid con PUT.
-
-a - En Postman:
-![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-02-28%20135852.png)
-
-b - En la base de datos corroboro que el producto ha sido editado con éxito:
-![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-02-28%20140452.png)
-
-### 9) Eliminar un producto del carrito con DELETE a través de la ruta /carts/:cid/products/:pid.
-
-a - En Postman:
-![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-02-28%20140751.png)
-
-b - En la base de datos corroboro que el producto ha sido eliminado con éxito:
-![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-02-28%20140905.png)
-
-### 10) Eliminar todos los productos del carrito con DELETE a través de la ruta /carts/:cid/.
-
-a - En Postman:
-![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-02-28%20141510.png)
-
-b - En la base de datos corroboro que el carrito esta vacío:
-![App Screenshot](https://www.entropiadigital.com.ar/IMG/Captura%20de%20pantalla%202024-02-28%20141624.png)
-
-### 11) El método para actualizar el carrito solicitado en la consigna de la entrega lo utilicé en los métodos de PUT y DELETE recién mostrados para actualizar el carrito. El método se encuentra en la línea 74 del archivo CartManagerMongo.js y se encuentra aplicado en las líneas 99, 123 y 143 del mismo archivo.
-
-### 12) En capturas anteriores se pudo ver que la paginación esta agregada, al dirigirse a /products se puede navegar entre la página anterior y la siguiente.
 
 
 
